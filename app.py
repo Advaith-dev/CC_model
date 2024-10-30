@@ -26,14 +26,7 @@ def detect_objects():
     
     # Get the annotated frame
     detected_objects = [model.names[int(cls)] for cls in results[0].boxes.cls]
-    
-    conf = results[0].boxes.conf
-    
-    confidence_value = conf.item()
+    return detected_objects
 
-    return jsonify({"detection": detected_objects[0] ,"conf": confidence_value})
-
-# Main function to run the app
-if __name__ == '__main__':
-    app.run(debug=True)
-
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
